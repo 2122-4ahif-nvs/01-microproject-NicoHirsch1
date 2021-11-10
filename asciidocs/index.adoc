@@ -1,0 +1,26 @@
+= 01-microproject-NicoHirsch1
+Nico Hirsch
+1.0.0, 2021-11-10: Rezeptseite
+ifndef::imagesdir[:imagesdir: images]
+//:toc-placement!:  // prevents the generation of the doc at this position, so it can be printed afterwards
+:sourcedir: ../src/main/java
+:icons: font
+:sectnums:    // Nummerierung der Überschriften / section numbering
+:toc: left
+
+//Need this blank line after ifdef, don't know why...
+ifdef::backend-html5[]
+
+// print the toc here (not at the default position)
+//toc::[]
+
+== Klassendiagramm
+
+[plantuml, align = left]
+----
+include::plantuml/cld.puml[]
+----
+
+== Erklärung
+
+Eine Website mit Rezepten. Wenn man nicht in einen User-Account eingeloggt ist, kann man sich die Rezepte nur anschauen, ansonsten hat man die Funktionen ein Rezept zu erstellen und auf andere Rezepte eine Bewertung abzugeben mit einer Sternenanzahl und optionalem Kommentar, wobei nur eine Bewertung pro Rezept möglich ist.

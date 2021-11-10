@@ -1,0 +1,27 @@
+@startuml
+left to right direction
+
+class Recipe {
+    user: User
+    title: String
+    description: String
+}
+
+class User {
+    userName: String
+    email: String
+    password: String
+}
+
+class Rating {
+    user: User
+    stars: Integer
+    comment: String
+    recipe: Recipe
+}
+
+Recipe "*" --> "1" User
+Recipe "1" <-- "*" Rating
+Rating "*" --> "1" User
+
+@enduml
