@@ -2,3 +2,4 @@
 /backend/.idea/
 /backend/db-postgres/
 /backend/target/
+/.env
