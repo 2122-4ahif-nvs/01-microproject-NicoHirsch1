@@ -11,14 +11,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("user")
+@Path("users")
 public class UserResource {
 
     @Inject
     EntityManager em;
 
     @GET
-    @Path("/get/all")
+    @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> getAllUsers() {
         TypedQuery<User> query = em.createQuery("select u from User u", User.class);

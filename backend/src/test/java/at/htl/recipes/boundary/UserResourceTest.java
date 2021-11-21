@@ -11,6 +11,6 @@ class UserResourceTest {
 
     @Test
     void getAllUsers() {
-        when().get("user/get/all").then().statusCode(200).body(startsWith("[{"));
+        when().get("users").then().statusCode(200).body(startsWith("[{"));
     }
 }
