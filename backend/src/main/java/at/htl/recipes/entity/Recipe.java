@@ -20,8 +20,7 @@ public class Recipe {
     public Recipe() {
     }
 
-    public Recipe(long id, User user, String title, String description) {
-        this.id = id;
+    public Recipe(User user, String title, String description) {
         this.user = user;
         this.title = title;
         this.description = description;
