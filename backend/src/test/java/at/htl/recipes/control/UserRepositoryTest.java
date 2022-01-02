@@ -16,7 +16,7 @@ class UserRepositoryTest {
     UserRepository userRepository;
 
     @Test
-    void addUser() {
+    void saveUser() {
         User user = userRepository.save(new User("User", "user@gmail.com", "user"));
         assertThat(user.getId()).isNotNull();
     }
