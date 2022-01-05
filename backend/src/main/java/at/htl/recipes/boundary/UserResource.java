@@ -1,5 +1,6 @@
 package at.htl.recipes.boundary;
 
+import at.htl.recipes.control.UserRepository;
 import at.htl.recipes.entity.User;
 
 import javax.inject.Inject;
@@ -11,18 +12,15 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("users")
+@Path("/users")
 public class UserResource {
 
     @Inject
-    EntityManager em;
+    UserRepository userRepository;
 
     @GET
-    @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> getAllUsers() {
-        TypedQuery<User> query = em.createQuery("select u from User u", User.class);
-        List<User> users = query.getResultList();
-        return users;
+        return userRepository.getAllUsers();
     }
 }
