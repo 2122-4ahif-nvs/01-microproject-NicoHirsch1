@@ -1,21 +1,11 @@
 package at.htl.recipes.control;
 
 import at.htl.recipes.entity.User;
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
 
 @ApplicationScoped
-public class UserRepository {
-
-    @Inject
-    EntityManager em;
-
-    @Transactional
-    public User save(User user) {
-        return em.merge(user);
-    }
+public class UserRepository implements PanacheRepository<User> {
 
 }
