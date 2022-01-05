@@ -32,4 +32,12 @@ class UserRepositoryTest {
         assertThat(user.id).isNotNull();
     }
 
+    @Order(2)
+    @Test
+    void getAllUsers() {
+        var users = userRepository.getAllUsers();
+        LOG.info(users);
+        assertThat(users.size()).isEqualTo(2);
+    }
+
 }
