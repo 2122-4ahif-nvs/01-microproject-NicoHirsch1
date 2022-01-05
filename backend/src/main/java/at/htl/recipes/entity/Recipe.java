@@ -1,20 +1,23 @@
 package at.htl.recipes.entity;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "RECIPES")
-public class Recipe {
+public class Recipe extends PanacheEntityBase {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public long id;
 
-    @ManyToOne
-    private User user;
+    @ManyToOne(cascade = CascadeType.ALL)
+    public User user;
 
-    private String title;
+    public String title;
 
-    private String description;
+    public String description;
 
     //region constructors
     public Recipe() {
@@ -23,40 +26,6 @@ public class Recipe {
     public Recipe(User user, String title, String description) {
         this.user = user;
         this.title = title;
-        this.description = description;
-    }
-    //endregion
-
-    //region getter and setter
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
         this.description = description;
     }
     //endregion

@@ -3,36 +3,41 @@ package at.htl.recipes.control;
 import at.htl.recipes.entity.Recipe;
 import at.htl.recipes.entity.User;
 import io.quarkus.test.junit.QuarkusTest;
+import org.jboss.logging.Logger;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
 import javax.inject.Inject;
-
-import java.util.List;
+import javax.transaction.Transactional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @QuarkusTest
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class RecipeRepositoryTest {
+
+    @Inject
+    Logger LOG;
 
     @Inject
     RecipeRepository recipeRepository;
 
-    @Inject
-    UserRepository userRepository;
-
+    @Order(1)
     @Test
+    @Transactional
     void saveRecipe() {
-        User user = userRepository.save(new User("RecipeUser1", "recipeUser1@gmail.com", "recipeUser1"));
-        Recipe recipe = recipeRepository.save(new Recipe(user, "Pizza", "Salami Pizza"));
-        assertThat(recipe.getId()).isNotNull();
+        var recipe = recipeRepository.getEntityManager().merge(new Recipe(new User("TestUser1", "testUser1@gmail.com", "testUser1"), "Salami Pizza", "Just a salami pizza"));
+        LOG.info(recipe);
+        assertThat(recipe.id).isNotNull();
     }
 
+    @Order(2)
     @Test
     void getAllRecipes() {
-        User user = userRepository.save(new User("RecipeUser2", "recipeUser2@gmail.com", "recipeUser2"));
-        Recipe recipe = recipeRepository.save(new Recipe(user, "Pizza", "Tuna Pizza"));
-        List<Recipe> recipes = recipeRepository.getAllRecipes();
+        var recipes = recipeRepository.getAllRecipes();
+        LOG.info(recipes);
         assertThat(recipes.size()).isEqualTo(1);
     }
 
