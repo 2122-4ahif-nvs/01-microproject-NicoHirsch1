@@ -41,4 +41,12 @@ class RecipeRepositoryTest {
         assertThat(recipes.size()).isEqualTo(1);
     }
 
+    @Order(3)
+    @Test
+    void getRecipeById() {
+        var recipe = recipeRepository.getRecipeById(1);
+        LOG.info(recipe);
+        assertThat(recipe).isNotNull();
+    }
+
 }
